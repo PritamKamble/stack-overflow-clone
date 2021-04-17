@@ -1,0 +1,47 @@
+<div *ngIf="questionsResponse && !isLoading && !isError">
+    <div class="questions-list mt-4">
+        <div class="row">
+            <h1>Top Questions</h1>
+        </div>
+    </div>
+
+    <div *ngFor="let question of questionsResponse.items" class="row m-4">
+        <div class="col-auto">
+            <div>{{question.score}}</div>
+            <div>Votes</div>
+        </div>
+        <div class="col-auto">
+            <div>{{question.answer_count}}</div>
+            <div>answer</div>
+        </div>
+        <div class="col-auto ">
+            <div>{{question.view_count}}</div>
+            <div>views</div>
+        </div>
+        <div class="col-auto">
+            <div>
+                <a [href]="question.link">
+                    {{question.title}}
+                </a>
+            </div>
+            <div class="row">
+                <div class="col align-self-start">
+                    <div class="row">
+                        <div *ngFor="let tag of question.tags"><span class="badge badge-secondary ml-2">{{tag}}</span></div>
+                    </div>
+                </div>
+                <div class="col align-self-end">
+                    <a [routerLink]="'../' + question.owner.user_id">{{question.owner.display_name}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isLoading && !isError">
+    ...Loading
+</div>
+
+<div *ngIf="isError && !isLoading">
+    Sorry, Something went wrong
+</div>

@@ -11,6 +11,7 @@ import { StackExchangeService } from 'src/app/services/stack-exchange/stack-exch
 export class QuestionsComponent implements OnInit {
 
   isLoading = false;
+  isError = false;
   questionsForm: FormGroup;
   questionsResponse!: QuestionsResponse;
 
@@ -22,7 +23,7 @@ export class QuestionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getQuestions();
+    // this.getQuestions();
   }
 
 
@@ -48,10 +49,12 @@ export class QuestionsComponent implements OnInit {
 
   public getQuestions(): void {
     this.isLoading = true;
+    this.isError = false;
     this.stackExchangeService.getQuestions(this.questionsForm.value).subscribe(res => {
       this.questionsResponse = res;
       this.isLoading = false;
     }, () => {
+      this.isError = true;
       this.isLoading = false;
     });
   }

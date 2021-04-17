@@ -1,1 +1,33 @@
-<p>profile works!</p>
+<div *ngIf="profile && !isLoading && !isError" class="container mt-4">
+    <div class="row">
+        <div class="col-2">
+            <div class="card">
+                <img class="card-img-top" [src]="profile.profile_image" alt="profile">
+                <div class="card-body">
+                    <h5 class="card-title">{{profile.reputation}} <small>Reputations</small></h5>
+                    <span *ngIf="profile.badge_counts.gold" class="badge badge-warning">{{profile.badge_counts.gold}}</span>
+                    <span *ngIf="profile.badge_counts.silver" class="badge badge-secondary ml-4">{{profile.badge_counts.silver}}</span>
+                    <span *ngIf="profile.badge_counts.bronze" class="badge badge-danger ml-4">{{profile.badge_counts.bronze}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-10">
+            <h2>{{profile.display_name}}</h2>
+            <h4>{{profile.location}}</h4>
+            <h4>
+                <a [href]="profile.website_url">{{profile.website_url}}</a>
+            </h4>
+        </div>
+    </div>
+
+    <app-tag-view></app-tag-view>
+    <app-user-questions></app-user-questions>
+</div>
+
+<div *ngIf="isLoading && !isError">
+    ...Loading
+</div>
+
+<div *ngIf="isError && !isLoading">
+    Sorry, Something went wrong
+</div>

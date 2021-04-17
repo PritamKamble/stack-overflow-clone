@@ -23,7 +23,7 @@
         </div>
         <button (click)="getQuestions()" class="btn btn-primary float-right" type="button">Search</button>
     </form>
-    <div *ngIf="questionsResponse && !isLoading">
+    <div *ngIf="questionsResponse && !isLoading && !isError">
         <div class="questions-list mt-4">
             <div class="row">
                 <h1>Top Questions</h1>
@@ -56,19 +56,19 @@
                         </div>
                     </div>
                     <div class="col align-self-end">
-                        <a routerLink="../profile">{{question.owner.display_name}}</a>
+                        <a [routerLink]="'../' + question.owner.user_id">{{question.owner.display_name}}</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div *ngIf="isLoading">
+    <div *ngIf="isLoading && !isError">
         ...Loading
     </div>
 
-    <div *ngIf="!questionsResponse && !isLoading">
-        ...Loading
+    <div *ngIf="isError && !isLoading">
+        Sorry, Something went wrong
     </div>
 
 </div>

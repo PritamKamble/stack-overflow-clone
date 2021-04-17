@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'questions' },
       { path: 'questions', component: QuestionsComponent },
-      { path: 'profile', component: ProfileComponent },
+      { path: ':id/profile', component: ProfileComponent },
     ]
   }
 ];

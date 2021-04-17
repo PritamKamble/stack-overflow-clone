@@ -1,7 +1,7 @@
-import { Item } from './item.interface';
+import { Question } from './question.interface';
 
 export interface QuestionsResponse {
-    items: Item[];
+    items: Question[];
     has_more: boolean;
     quota_max: number;
     quota_remaining: number;

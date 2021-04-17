@@ -1,0 +1,19 @@
+<div *ngIf="tags.length && !isLoading && !isError" class="mt-4">
+    <h1>Top tags</h1>
+    <div *ngFor="let tag of tags" class="row">
+        <div class="col-2">
+            <span class="badge badge-secondary">{{tag.name}}</span>
+        </div>
+        <div class="col-10">
+            score {{tag.count}}
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isLoading && !isError">
+    ...Loading
+</div>
+
+<div *ngIf="isError && !isLoading">
+    Sorry, Something went wrong
+</div>

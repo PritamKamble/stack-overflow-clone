@@ -1,6 +1,6 @@
 import { Owner } from './owner.interface';
 
-export interface Item {
+export interface Question {
     tags: string[];
     owner: Owner;
     is_answered: boolean;
@@ -16,4 +16,5 @@ export interface Item {
     link: string;
     title: string;
     last_edit_date?: number;
+    accepted_answer_id?: number;
 }
