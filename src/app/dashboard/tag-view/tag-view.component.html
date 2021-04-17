@@ -1,4 +1,4 @@
-<div *ngIf="tags.length && !isLoading && !isError" class="mt-4">
+<div *ngIf="tags && !isLoading && !isError" class="mt-4">
     <h1>Top tags</h1>
     <div *ngFor="let tag of tags" class="row">
         <div class="col-2">
