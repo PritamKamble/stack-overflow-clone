@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="col align-self-end">
-                    <a [routerLink]="'../' + question.owner.user_id">{{question.owner.display_name}}</a>
+                    <a [href]="question.owner.link">{{question.owner.display_name}}</a>
                 </div>
             </div>
         </div>
