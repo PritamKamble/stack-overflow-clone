@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  hostURL: 'https://api.stackexchange.com/2.2'
 };

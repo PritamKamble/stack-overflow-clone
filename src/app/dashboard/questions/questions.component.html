@@ -1,0 +1,74 @@
+<div class="container mt-4">
+    <form [formGroup]="questionsForm">
+        <div class="row">
+            <div class="form-group ml-2">
+                <label>Page size</label>
+                <input #pagesize (keyup)="resetPageSize(+pagesize.value)" formControlName="pageSize" type="number" class="form-control" min="1" placeholder="page size">
+            </div>
+            <div class="form-group ml-2">
+                <label>Order</label>
+                <select formControlName="order" class="form-control">
+                    <option value="desc">Descending</option>
+                    <option value="asc">Ascending</option>
+                </select>
+            </div>
+            <div class="form-group ml-2">
+                <label>Sort</label>
+                <select formControlName="sort" class="form-control">
+                    <option value="activity">Activity</option>
+                    <option value="votes">Votes</option>
+                    <option value="creation">Creation</option>
+                </select>
+            </div>
+        </div>
+        <button (click)="getQuestions()" class="btn btn-primary float-right" type="button">Search</button>
+    </form>
+    <div *ngIf="questionsResponse && !isLoading">
+        <div class="questions-list mt-4">
+            <div class="row">
+                <h1>Top Questions</h1>
+            </div>
+        </div>
+
+        <div *ngFor="let question of questionsResponse.items" class="row m-4">
+            <div class="col-auto">
+                <div>{{question.score}}</div>
+                <div>Votes</div>
+            </div>
+            <div class="col-auto">
+                <div>{{question.answer_count}}</div>
+                <div>answer</div>
+            </div>
+            <div class="col-auto ">
+                <div>{{question.view_count}}</div>
+                <div>views</div>
+            </div>
+            <div class="col-auto">
+                <div>
+                    <a [href]="question.link">
+                        {{question.title}}
+                    </a>
+                </div>
+                <div class="row">
+                    <div class="col align-self-start">
+                        <div class="row">
+                            <div *ngFor="let tag of question.tags"><span class="badge badge-secondary ml-2">{{tag}}</span></div>
+                        </div>
+                    </div>
+                    <div class="col align-self-end">
+                        <a routerLink="../profile">{{question.owner.display_name}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="isLoading">
+        ...Loading
+    </div>
+
+    <div *ngIf="!questionsResponse && !isLoading">
+        ...Loading
+    </div>
+
+</div>
